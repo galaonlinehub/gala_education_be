@@ -6,12 +6,22 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Validator;
 
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        
+        $request->validate([
+        'fullname' => 'required',
+        'email' => 'required|email',
+        'username' => 'required',
+        'password'=>'required'
+        ], [
+        'name.required' => 'The name field is mandatory.',
+        'email.required' => 'We need your email address.',
+        ]);
+
 
         $user = User::create([
             'fullname'=>$request->fullname,
