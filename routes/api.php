@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CollegeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,12 +42,11 @@ Route::post('/department',[DepartmentController::class,'create']);
 Route::get('/programme',[ProgrammeController::class,'show']);
 Route::post('/programme',[ProgrammeController::class,'create']);
 
-
-
-
+Route::get('/countries',[AddressController::class,'show']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
